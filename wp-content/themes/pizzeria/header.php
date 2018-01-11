@@ -23,8 +23,8 @@
 							$args = array(
 								'theme_location'  => 'social-menu',
 								'container'       => 'nav',
-								'container_class' => 'menu-social',
-								'container_id'    => 'menu-social',
+								'container_class' => 'sociales',
+								'container_id'    => 'sociales',
 								'link_before'     => '<span class="sr-text">',
 								'link_after'      => '</span>'
 							);
@@ -42,19 +42,24 @@
 			</div>
 		</header>
 		
-		<nav class="menu-sitio">
-			<div class="contenedor navegacion">
-				<?php
-				$args = array(
-					'theme_location'  => 'header-menu',
-					'container'       => 'nav',
-					'container_class' => 'menu-sitio'
-				);
-				
-				wp_nav_menu($args);
-				
-				?>
+		<div class="menu-principal">
+			
+			<div class="mobile-menu">
+				<a href="#" class="mobile"><i class="fa fa-bars" aria-hidden="true"></i> Menu</a>
 			</div>
-		</nav>
 		
+			<div class="contenedor navegacion">
+					<?php
+					$args = array(
+						'theme_location'  => 'header-menu',
+						'container'       => 'nav',
+						'container_class' => 'menu-sitio'
+					);
+
+					wp_nav_menu($args);
+
+					?>
+			</div>
+		
+		</div>
 		
