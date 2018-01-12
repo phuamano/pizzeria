@@ -11,6 +11,7 @@ function pizzeria_styles(){
 	wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.css' , array(), '7.0.0');
 	wp_register_style('style', get_template_directory_uri() . '/style.css' , array('normalize'), '1.0.0');
 	wp_register_style('fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css' , array('normalize'), '4.0.0');
+	wp_register_style('google_fonts' , 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:400,700,900', array(), '1.0.0');
 	
 	wp_enqueue_style('style');
 	wp_enqueue_style('normalize');
