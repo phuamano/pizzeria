@@ -15,7 +15,7 @@
 		<p>Telefono: (511)4251988</p>
 	</div>
 	
-	<p class="copyright"> Todos los derechos reservados <?php date('Y'); ?></p>
+	<p class="copyright"> Todos los derechos reservados <?php echo date('Y'); ?></p>
 </footer>
 
 
