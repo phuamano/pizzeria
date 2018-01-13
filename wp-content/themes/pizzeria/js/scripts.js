@@ -20,6 +20,15 @@ $(document).ready(function(){
     
     //ajustar cajas segun tamañao de imagen
     ajustarCajas();
+    
+    //fluidbox
+    jQuery('.gallery a').each(function(){
+        jQuery(this).attr({'data-fluidbox' : ''});
+    });
+    
+    if(jQuery('[data-fluidbox]').length > 0){
+        jQuery('[data-fluidbox]').fluidbox();
+    }
 });
 
 function ajustarCajas(){
