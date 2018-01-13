@@ -44,6 +44,30 @@ h4 {
     font-size: 24px;
 }
 
+.button,
+div.comentarios form input[type='submit']{
+    background-color: #a61206;
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 16px;
+    width: auto;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 15px 80px;
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color .5s ease;
+    cursor: pointer;
+}
+
+.button.rojo{
+    background-color: #a61206;
+}
+
+.button:hover{
+    background-color: #f19f30;
+ }
+
 .texto-rojo{
     color: #a61206;
 }
@@ -143,7 +167,9 @@ nav.sociales ul{
     }
 }
 
-.sr-text{
+
+.sr-text,
+.screen-reader-text{
     display: none;
 }
 
@@ -213,7 +239,8 @@ nav.menu-sitio ul li a{
         
 }
 
-nav.menu-sitio ul li.current_page_item a{
+nav.menu-sitio ul li.current_page_item a,
+nav.menu-sitio ul li.current_page_parent a{
     border-bottom: 8px solid #a61206;
 }
 
@@ -509,4 +536,217 @@ div.texto-especialidad p{
     .columnas2-3{
         width: 66.6%;
     }
+}
+
+/**BLOG**/
+
+aside.sidebar{
+    margin-top: 3px;
+}
+
+article.entrada-blog{
+    margin-top: 30px;
+}
+
+header.informacion-entrada{
+    margin-top: 20px;
+}
+
+header.informacion-entrada div.fecha{
+    background-color: #f19f30;
+    float: left;
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    padding-top: 5px;
+    margin-right: 20px;
+}
+
+header.informacion-entrada div.fecha time{
+    font-size: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+header.informacion-entrada div.fecha time span{
+    font-size: 16px;
+    display: block;
+    clear: both;
+    text-transform: uppercase;
+}
+
+header.informacion-entrada .titulo-entrada{
+    float: right;
+    width: calc(100% - 90px);
+}
+
+header.informacion-entrada h2{
+    margin: 0;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+header.informacion-entrada p.autor{
+    text-transform: uppercase;
+    color: #505050;
+    margin-top: 10px;
+    font-family: 'Raleway', sans-serif;
+}
+
+p.autor i{
+    font-size: 30px;
+    color: #f19f30;
+}
+
+div.contenido-entrada p{
+     margin-bottom: 0;
+     line-height: 24px;
+}
+
+ul.lista-comentarios,
+ul.lista-comentarios ul{
+    list-style: none;
+}
+
+ul.lista-comentarios li.comment{
+    background-color: #e1e1e1;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+}
+
+ul.lista-comentarios li.comment cite{
+    color: #a61206;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+ul.lista-comentarios li.comment .comment-author{
+    margin-bottom: 20px;
+}
+
+ul.lista-comentarios li.comment a{
+    color: #a61206;
+    text-decoration: none;
+}
+
+ul.lista-comentarios li.comment ul.children li{
+    background-color: white;
+    margin-top: 20px;
+}
+
+.paginacion{
+    margin-top: 20px;
+    background-color: #e1e1e1;
+    padding: 20px;
+    display: inline-block;
+    border-radius: 20px;
+}
+
+.paginacion a{
+    color: #a61206;
+   text-decoration: none;
+}
+
+.paginacion a:hover{
+    text-decoration: underline;
+}
+
+.paginacion .current{
+    font-weight: bold;
+    color: #555;
+}
+
+/**SIDEBAR**/
+
+aside.sidebar{
+    margin-top: 3px;
+}
+
+form.searchform{
+    position: relative;
+}
+
+form.searchform #searchsubmit{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 42px;
+    height: 42px;
+    background-color: #a61206;
+    text-indent: -9999px;
+    background-image: url(img/buscador.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: none;
+    cursor: pointer;
+}
+
+form.searchform input{
+    width: 100%;
+    padding: 10px;
+}
+
+aside .widget{
+    margin-bottom: 20px;
+}
+
+aside .widget  h3{
+    font-weight: 700;
+    font-size: 24px;
+    text-transform: uppercase;
+}
+
+aside .widget ul{
+    list-style: none;
+}
+
+aside .widget ul li{
+    margin-bottom: 20px;
+}
+
+aside .widget ul li a{
+    color: #000000;
+    text-decoration: none;
+}
+
+aside .widget ul li a:hover{
+    color: #f19f30;
+}
+
+/**COMENTARIOS**/
+
+div.comentarios h3{
+    font-weight: 700;
+    text-align: center;
+}
+
+@media only screen and (min-width:992px){
+    div.comentarios{
+        width: 60%;
+    }
+}
+
+div.comentarios form label{
+    width: 200px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 20px;
+}
+
+div.comentarios form input,
+div.comentarios form textarea{
+    padding: 10px;
+    width: calc(100% - 220px);
+}
+
+div.comentarios form input[type='submit']{
+    margin: 0 auto;
+    display: block;
+    border: none;
+}
+
+p.logged-in-as a{
+    color: #a61206;
 }
