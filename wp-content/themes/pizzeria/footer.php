@@ -11,8 +11,8 @@
 	?>
 	
 	<div class="ubicacion">
-		<p>Av. Enrique Meiggs 1748 - Lima</p>
-		<p>Telefono: (511)4251988</p>
+		<p><?php echo esc_html( get_option('pizzeria_direccion') ); ?></p>
+		<p>Teléfono: <?php echo esc_html( get_option('pizzeria_telefono') ); ?></p>
 	</div>
 	
 	<p class="copyright"> Todos los derechos reservados <?php echo date('Y'); ?></p>

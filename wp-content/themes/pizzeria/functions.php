@@ -1,5 +1,13 @@
 <?php
 
+require get_template_directory() . '/inc/database.php';
+
+//funciones para las reservaciones
+require get_template_directory() . '/inc/reservaciones.php';
+
+//crear opciones para el template
+require get_template_directory() . '/inc/opciones.php';
+
 function pizzeria_setup(){
 	add_theme_support('post-thumbnails');
 	
