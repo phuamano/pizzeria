@@ -13,6 +13,7 @@ function pizzeria_setup(){
 	
 	add_image_size('nosotros', 437, 291, true);
 	add_image_size('especialidades', 768, 515, true);
+	add_image_size('especialidades_portrait', 435, 526, true);
 	
 	//cambiar el tramaño de las imagenes por defaul
 	update_option('thumbnail_size_w', 253);

@@ -46,7 +46,7 @@
 								<div class="contenido-entrada">
 									<?php the_excerpt();?>
 
-									<a href="<?php the_permalink();?>" class="button rojo">Leer más</a>
+									<a href="<?php the_permalink();?>" class="button">Leer más</a>
 								</div>
 							</article>
 						<?php endwhile; ?>
