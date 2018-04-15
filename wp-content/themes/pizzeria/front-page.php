@@ -8,30 +8,30 @@
 				<div class="texto-hero">
 					<h1><?php echo esc_html( get_option( 'blogdescription')); ?></h1>
 					<?php the_content(); ?>
-					
+
 					<?php $url = get_page_by_title('Sobre Nosotros'); ?>
 					<a class="button naranja" href=<?php echo get_permalink($url->ID);?>>Leer más</a>
 				</div>
 			</div>
 		</div>
 <?php endwhile; ?>
-		
+
 		<div class="principal contenedor">
 			<main class="contenedor-grid">
 				<h2 class="rojo texto-centrado">Nuestras Especialidades</h2>
-				
+
 				<?php $args = array(
 					'posts_per_page' => 3,
 					'orderby'   => 'rand',
 					'post_type' => 'especialidades',
 					'category_name' => 'pizzas'
 				);
-				
+
 				$especialidades = new WP_Query($args);
-				
+
 				while($especialidades->have_posts()): $especialidades->the_post();
 				?>
-				
+
 				<div class="especialidad columnas1-3">
 					<div class="contenido-especialidad">
 						<?php the_post_thumbnail('especialidades_portrait'); ?>
@@ -41,9 +41,9 @@
 							<p class="precio">$<?php the_field('precio'); ?></p>
 							<a href="<?php the_permalink(); ?>" class="button">Leer más</a>
 						</div>
-					</div>						
+					</div>
 				</div>
-				
+
 				<?php endwhile; wp_reset_postdata(); ?>
 			</main>
 		</div>
@@ -62,60 +62,27 @@
 					</div>
 				<?php endwhile; ?>
 				</div>
-			</div>			
+			</div>
 		</section>
 
 <section class="contenedor">
 	<h2 class="texto-rojo texto-centrado">Galería de Imágenes</h2>
 	<?php $url = get_page_by_title( 'Galeria');?>
 	<?php echo get_post_gallery( $url->ID );?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
-	<?php ?>
 </section>
 
 <section class="ubicacion-reservacion">
 	<div class="contenedor-grid">
 		<div class="columnas2-4">
-			mapa aqui
+			<div id="mapa">
+
+			</div>
 		</div>
 		<div class="columnas2-4">
-			<form class="reserva-contacto" method="post">
-					<h2>Realizar una Reservación</h2>
-				
-					<div class="campo">
-						<input type="text" name="nombre" placeholder="Nombre" required>
-					</div>
-					
-					<div class="campo">
-						<input type="datetime-local" name="fecha" placeholder="Fecha" required>
-					</div>
-					
-					<div class="campo">
-						<input type="email" name="correo" placeholder="Correo" required>
-					</div>
-					
-					<div class="campo">
-						<input type="tel" name="telefono" placeholder="Teléfono" required>
-					</div>
-					
-					<div class="campo">
-						<textarea name="mensaje" placeholder="Mensaje" required></textarea>
-					</div>
-					
-					<input type="submit"  name="enviar" class="button">
-					<input type="hidden"  name="oculto" value="1">
-				</form>
+			<?php get_template_part( 'templates/formulario','reservacion' ); ?>
 		</div>
-		
+
 	</div>
 </section>
-
-
 
 <?php get_footer();?>
