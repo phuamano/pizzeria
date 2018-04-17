@@ -36,7 +36,9 @@ function pizzeria_styles(){
 	wp_enqueue_style('fluidboxcss');
 
 	//registrar js
-	wp_register_script( 'maps' , 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2PKfjtm86h5_sVUfGtj6fhisXIvjjSSk&callback=initMap', array(), '', true );
+
+	$apikey = esc_html( get_option( 'pizzeria_gmap_apikey' ));
+	wp_register_script( 'maps' , 'https://maps.googleapis.com/maps/api/js?key='.$apikey.'&callback=initMap', array(), '', true );
 	wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js' , array() , '1.0.0' , true);
 	wp_register_script('fluidbox', get_template_directory_uri() . '/js/jquery.fluidbox.min.js' , array() , '1.0.0' , true);
 
@@ -44,6 +46,17 @@ function pizzeria_styles(){
 	wp_enqueue_script('jquery');
 	wp_enqueue_script('scripts');
 	wp_enqueue_script('fluidbox');
+
+	//pasar variables php a Javascript
+	wp_localize_script(
+			'scripts',
+			'opciones',
+			array(
+				'latitud' => get_option('pizzeria_gmap_latitud'),
+				'longitud' => get_option('pizzeria_gmap_longitud'),
+				'zoom' => get_option('pizzeria_gmap_zoom'),
+			)
+	);
 }
 
 add_action('wp_enqueue_scripts','pizzeria_styles');
@@ -126,3 +139,176 @@ function pizzeria_widgets(){
 }
 
 add_action('widgets_init','pizzeria_widgets');
+
+/**ADVANCE CUSTOM FIELD**/
+define( 'ACF_LITE', true );
+
+include_once('advanced-custom-fields/acf.php');
+
+if(function_exists("register_field_group"))
+{
+	register_field_group(array (
+		'id' => 'acf_especialidades',
+		'title' => 'Especialidades',
+		'fields' => array (
+			array (
+				'key' => 'field_5ad19467ef0b5',
+				'label' => 'Precio',
+				'name' => 'precio',
+				'type' => 'text',
+				'instructions' => 'Añada precio de platillo',
+				'default_value' => '',
+				'placeholder' => '',
+				'prepend' => '',
+				'append' => '',
+				'formatting' => 'html',
+				'maxlength' => '',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'especialidades',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+	register_field_group(array (
+		'id' => 'acf_principal',
+		'title' => 'Principal',
+		'fields' => array (
+			array (
+				'key' => 'field_5ad209e738965',
+				'label' => 'Contenido',
+				'name' => 'contenido',
+				'type' => 'wysiwyg',
+				'default_value' => 'Agregar descripción',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+			array (
+				'key' => 'field_5ad209fd38966',
+				'label' => 'imagen',
+				'name' => 'imagen',
+				'type' => 'image',
+				'instructions' => 'Agregue imagen',
+				'save_format' => 'url',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page',
+					'operator' => '==',
+					'value' => '5',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+	register_field_group(array (
+		'id' => 'acf_sobre-nosotros',
+		'title' => 'Sobre Nosotros',
+		'fields' => array (
+			array (
+				'key' => 'field_5ad190f6f72cf',
+				'label' => 'Imagen 1',
+				'name' => 'imagen_1',
+				'type' => 'image',
+				'instructions' => 'Suba una Imagen',
+				'save_format' => 'id',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
+				'key' => 'field_5ad191acf72d2',
+				'label' => 'Descripcion 1',
+				'name' => 'descripcion_1',
+				'type' => 'wysiwyg',
+				'instructions' => 'Agregue aquí la descripción',
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+			array (
+				'key' => 'field_5ad19194f72d0',
+				'label' => 'Imagen 2',
+				'name' => 'imagen_2',
+				'type' => 'image',
+				'instructions' => 'Suba una Imagen',
+				'save_format' => 'id',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
+				'key' => 'field_5ad191e3f72d3',
+				'label' => 'Descripcion 2',
+				'name' => 'descripcion_2',
+				'type' => 'wysiwyg',
+				'instructions' => 'Agregue aquí la descripción',
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+			array (
+				'key' => 'field_5ad191a1f72d1',
+				'label' => 'Imagen 3',
+				'name' => 'imagen_3',
+				'type' => 'image',
+				'instructions' => 'Suba una Imagen',
+				'save_format' => 'id',
+				'preview_size' => 'thumbnail',
+				'library' => 'all',
+			),
+			array (
+				'key' => 'field_5ad191f0f72d4',
+				'label' => 'Descripcion 3',
+				'name' => 'descripcion_3',
+				'type' => 'wysiwyg',
+				'instructions' => 'Agregue aquí la descripción',
+				'default_value' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'yes',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'page',
+					'operator' => '==',
+					'value' => '7',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'normal',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+			),
+		),
+		'menu_order' => 0,
+	));
+}
