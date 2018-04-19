@@ -255,8 +255,12 @@ nav.menu-sitio ul li.current_page_parent a{
     border-bottom: 8px solid #a61206;
 }
 
-nav.menu-sitio ul li:hover {
+nav.menu-sitio ul li:hover{
     background-color: #f19f30;
+}
+
+nav.menu-sitio ul li.menu-item-has-children:hover ul{
+  background-color: white;
 }
 
 @media only screen and (min-width: 768px){
@@ -265,6 +269,30 @@ nav.menu-sitio ul li:hover {
         width: 1%;
     }
 }
+
+
+@media only screen and (min-width: 992px){
+  .menu-sitio li.menu-item-has-children{
+    position: relative;
+  }
+
+  .menu-sitio li.menu-item-has-children ul.sub-menu{
+    display: none;
+  }
+
+  .menu-sitio li.menu-item-has-children:hover ul.sub-menu{
+    display: block;
+    position: absolute;
+    z-index: 100;
+    background-color: white;
+  }
+
+  .menu-sitio li.menu-item-has-children:hover ul.sub-menu li{
+    display: block;
+    width: 100%;
+  }
+}
+
 
 /**RESPONSIVE MOBILE**/
 
@@ -806,6 +834,7 @@ form.reserva-contacto h2{
 form.reserva-contacto .campo{
     margin-bottom: 20px;
     width: 100%;
+    position: relative;
 }
 
 form.reserva-contacto .campo input,

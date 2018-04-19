@@ -11,6 +11,8 @@ require get_template_directory() . '/inc/opciones.php';
 function pizzeria_setup(){
 	add_theme_support('post-thumbnails');//con esto se agrega la imagen destacada
 
+
+
 	add_image_size('nosotros', 437, 291, true);
 	add_image_size('especialidades', 768, 515, true);
 	add_image_size('especialidades_portrait', 435, 526, true);
@@ -22,6 +24,15 @@ function pizzeria_setup(){
 
 add_action('after_setup_theme','pizzeria_setup');
 
+function pizzeria_custom_logo(){
+	$logo= array(
+		'height' => '220',
+		'width' => '280'
+	);
+	add_theme_support( 'custom-logo' );//agregar logo
+}
+add_action( 'after_setup_theme','pizzeria_custom_logo' );
+
 function pizzeria_styles(){
 
 	wp_register_style('normalize', get_template_directory_uri() . '/css/normalize.css' , array(), '7.0.0');
@@ -29,11 +40,13 @@ function pizzeria_styles(){
 	wp_register_style('fontawesome', get_template_directory_uri() . '/css/font-awesome.min.css' , array('normalize'), '4.0.0');
 	wp_register_style('google_fonts' , 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway:400,700,900', array(), '1.0.0');
 	wp_register_style('fluidboxcss', get_template_directory_uri() . '/css/fluidbox.min.css' , array('normalize'), '4.0.0');
+	wp_register_style('datetime-local', get_template_directory_uri() . '/css/datetime-local-polyfill.css' , array('normalize'), '4.0.0');
 
 	wp_enqueue_style('style');
 	wp_enqueue_style('normalize');
 	wp_enqueue_style('fontawesome');
 	wp_enqueue_style('fluidboxcss');
+	wp_enqueue_style('datetime-local');
 
 	//registrar js
 
@@ -41,11 +54,17 @@ function pizzeria_styles(){
 	wp_register_script( 'maps' , 'https://maps.googleapis.com/maps/api/js?key='.$apikey.'&callback=initMap', array(), '', true );
 	wp_register_script('scripts', get_template_directory_uri() . '/js/scripts.js' , array() , '1.0.0' , true);
 	wp_register_script('fluidbox', get_template_directory_uri() . '/js/jquery.fluidbox.min.js' , array() , '1.0.0' , true);
+	wp_register_script('datetime-local-polyfill', get_template_directory_uri() . '/js/datetime-local-polyfill.min.js' , array() , '1.0.0' , true);
+	wp_register_script( 'modernizr' , 'https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js' , array(), '2.8.3' , true );
 
 	wp_enqueue_script('maps');
 	wp_enqueue_script('jquery');
+	wp_enqueue_script('jquery-ui-core');
+	wp_enqueue_script('jquery-ui-datepicker');
 	wp_enqueue_script('scripts');
 	wp_enqueue_script('fluidbox');
+	wp_enqueue_script('datetime-local-polyfill');
+	wp_enqueue_script( 'modernizr' );
 
 	//pasar variables php a Javascript
 	wp_localize_script(
