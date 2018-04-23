@@ -1,5 +1,34 @@
 <?php
 
+function pizzeria_eliminar(){
+	if(isset($_POST['tipo'])){
+		if($_POST['tipo'] == 'eliminar'){
+			global $wpdb;
+			$tabla = $wpdb->prefix . 'reservaciones';
+			
+			$id_registro = $_POST['id'];
+			
+			$resultado = $wpdb->delete($tabla, array('id' => $id_registro), array('%d'));
+			
+			if($resultado == 1){
+				$respuesta = array(
+					'respuesta' => 1,
+					'id' => $id_registro											
+				);
+			}else{
+				$respuesta = array(
+					'respuesta' => 0,
+					'id' => $id_registro
+						);
+			}
+		
+		}
+	}
+	
+	die( json_encode($respuesta));
+}
+add_action('wp_ajax_pizzeria_eliminar','pizzeria_eliminar');
+
 function pizzeria_guardar(){
 
 	global $wpdb;

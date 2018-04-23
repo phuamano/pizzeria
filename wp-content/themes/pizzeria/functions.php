@@ -10,7 +10,7 @@ require get_template_directory() . '/inc/opciones.php';
 
 function pizzeria_setup(){
 	add_theme_support('post-thumbnails');//con esto se agrega la imagen destacada
-
+	add_theme_support('title-tag');//titulo
 
 
 	add_image_size('nosotros', 437, 291, true);
@@ -80,6 +80,17 @@ function pizzeria_styles(){
 
 add_action('wp_enqueue_scripts','pizzeria_styles');
 
+function pizzeria_admin_scripts(){
+	wp_enqueue_script('adminjs', get_template_directory_uri() .'/js/admin-ajax.js', array('jquery'), '1.0', true);
+	
+	//Pasar la URL DE WP Ajax al adminjs
+	wp_localize_script(
+			'adminjs',
+			'url_eliminar',
+			array('ajaxurl' => admin_url('admin-ajax.php'))
+			);
+}
+add_action('admin_enqueue_scripts','pizzeria_admin_scripts');
 
 //Agregar Async y Defer
 function agregar_async_defer($tag, $handle){
